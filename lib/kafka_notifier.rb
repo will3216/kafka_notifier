@@ -33,7 +33,7 @@ module Redborder
 
     self.config = YAML.load(File.read('config/kafka.yml')).symbolize_keys
 
-    def self.start producer
+    def self.start producer=nil
       self.producer = producer || Poseidon::Producer.new(
         config[:brokers], config[:client_id], type: :sync,
         required_acks: 1, partitioner: partitioner
